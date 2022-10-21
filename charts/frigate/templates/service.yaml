@@ -58,13 +58,6 @@ spec:
       protocol: UDP
 {{- end }}
 {{ end }}
-{{ if .Values.service.rtsp.tcp }}
-{{- range untilStep (.Values.service.rtsp.tcp.start | int) (.Values.service.rtsp.tcp.end | int) 1 }}
-    - name: external-tcp-{{ . }}
-      port: {{ . }}
-      protocol: TCP
-{{- end }}
-{{ end }}
   selector:
     app.kubernetes.io/name: {{ include "frigate.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
