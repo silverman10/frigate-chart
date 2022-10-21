@@ -52,14 +52,14 @@ spec:
       nodePort: {{.Values.service.nodePort}}
 {{ end }}
 {{ if .Values.service.rtsp.udp }}
-{{- range untilStep (.Values.service.rtsp.udp.start | int) ((.Values.service.rtsp.udp.end | int) + 1) 1 }}
+{{- range untilStep (.Values.service.rtsp.udp.start | int) (.Values.service.rtsp.udp.end | int) 1 }}
     - name: external-udp-{{ . }}
       port: {{ . }}
       protocol: UDP
 {{- end }}
 {{ end }}
 {{ if .Values.service.rtsp.tcp }}
-{{- range untilStep (.Values.service.rtsp.tcp.start | int) ((.Values.service.rtsp.tcp.end | int) + 1) 1 }}
+{{- range untilStep (.Values.service.rtsp.tcp.start | int) (.Values.service.rtsp.tcp.end | int) 1 }}
     - name: external-tcp-{{ . }}
       port: {{ . }}
       protocol: TCP
