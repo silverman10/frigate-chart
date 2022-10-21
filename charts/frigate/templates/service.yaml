@@ -51,12 +51,13 @@ spec:
 {{ if (and (eq .Values.service.type "NodePort") (not (empty .Values.service.nodePort))) }}
       nodePort: {{.Values.service.nodePort}}
 {{ end }}
-{{- if .Values.service.rtsp }}
+{{ if .Values.service.rtsp }}
 {{- range untilStep .Values.service.rtsp.udp.start .Values.service.rtsp.udp.end 1 }}
     - name: externalUDP-{{ . }}
       port: "{{ . }}"
       protocol: UDP
 {{- end }}
+{{ end }}
   selector:
     app.kubernetes.io/name: {{ include "frigate.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
