@@ -54,7 +54,7 @@ spec:
 {{ if .Values.service.rtsp }}
 {{- range untilStep (.Values.service.rtsp.udp.start | int) (.Values.service.rtsp.udp.end | int) 1 }}
     - name: externalUDP-{{ . }}
-      port: "{{ . }}"
+      port: {{ . }}
       protocol: UDP
 {{- end }}
 {{ end }}
