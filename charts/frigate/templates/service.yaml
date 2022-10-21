@@ -69,7 +69,6 @@ metadata:
 {{ toYaml . | indent 4 }}
 {{- end }}
 spec:
-{{- if (or (eq .Values.service.type "ClusterIP") (empty .Values.service.type)) }}
   type: LoadBalancer
   ports:
 {{ if .Values.service.rtsp.udp }}
